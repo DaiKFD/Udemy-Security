@@ -1,12 +1,13 @@
 package com.eazybytes.controller;
 
-import com.eazybytes.model.Notice;
-import com.eazybytes.repository.NoticeRepository;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.eazybytes.model.Notice;
+import com.eazybytes.repository.NoticeRepository;
 
 @RestController
 public class NoticesController {
@@ -16,7 +17,7 @@ public class NoticesController {
 	
 	@GetMapping("/notices")
 	public List<Notice> getNotices() {
-		List<Notice> notices = (List<Notice>) noticeRepository.findAll();
+		List<Notice> notices = noticeRepository.findAllActiveNotices();
 		if (notices != null ) {
 			return notices;
 		}else {

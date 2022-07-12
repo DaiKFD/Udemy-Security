@@ -21,7 +21,10 @@ export class XhrInterceptor implements HttpInterceptor {
         httpHeaders = httpHeaders.append('Authorization', authorization);  
       }
     }
-    
+    let authorization = sessionStorage.getItem('Authorization');
+    if(authorization){
+      httpHeaders = httpHeaders.append('Authorization', authorization);  
+    }
     httpHeaders = httpHeaders.append('X-Requested-With', 'XMLHttpRequest');
     const xhr = req.clone({
       headers: httpHeaders

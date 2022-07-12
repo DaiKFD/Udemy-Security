@@ -1,14 +1,16 @@
 package com.eazybytes.controller;
 
-import com.eazybytes.model.Contact;
-import com.eazybytes.repository.ContactRepository;
+import java.sql.Date;
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreFilter;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.Date;
-import java.util.Random;
+import com.eazybytes.model.Contact;
+import com.eazybytes.repository.ContactRepository;
 
 @RestController
 public class ContactController {
@@ -17,6 +19,8 @@ public class ContactController {
 	private ContactRepository contactRepository;
 	
 	@PostMapping("/contact")
+	@PreFilter("filterObject.message == 'Test'")
+	//author parameter,if == test,no author,check từng cột nhập,ko như preauthor
 	public Contact saveContactInquiryDetails(@RequestBody Contact contact) {
 		contact.setContactId(getServiceReqNumber());
 		contact.setCreateDt(new Date(System.currentTimeMillis()));
