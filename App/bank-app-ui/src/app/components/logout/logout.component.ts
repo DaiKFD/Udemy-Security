@@ -16,6 +16,7 @@ export class LogoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
+	window.sessionStorage.setItem("Authorization",null);
     window.sessionStorage.setItem("userdetails",null);
     window.sessionStorage.setItem("XSRF-TOKEN",null);
     this.router.navigate(['/login']);

@@ -50,7 +50,7 @@ INSERT INTO `customer` (`name`,`email`,`mobile_number`, `pwd`, `role`,`create_dt
 
 CREATE TABLE `accounts` (
   `customer_id` int NOT NULL,
-   `account_number` int NOT NULL,
+   `account_number` varchar(200) NOT NULL,
   `account_type` varchar(100) NOT NULL,
   `branch_address` varchar(200) NOT NULL,
   `create_dt` date DEFAULT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE `accounts` (
 );
 
 INSERT INTO `accounts` (`customer_id`, `account_number`, `account_type`, `branch_address`, `create_dt`)
- VALUES (1, 186576453434, 'Savings', '123 Main Street, New York', CURDATE());
+ VALUES (1, '186576453434', 'Savings', '123 Main Street, New York', CURDATE());
 
 CREATE TABLE `account_transactions` (
   `transaction_id` varchar(200) NOT NULL,
